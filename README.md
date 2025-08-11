@@ -1,16 +1,15 @@
 # Speech Sentiment and Emotion Analysis
 
-This project aims to detect and classify emotions from speech audio files using machine learning. The model is trained to recognize sentiments like happy, sad, angry, etc., by analyzing various acoustic features of the voice.
+This project develops a deep learning model to classify emotions from speech audio files. Using a Convolutional Neural Network (CNN) combined with a Long Short-Term Memory (LSTM) network, the model is trained on the RAVDESS dataset to recognize emotions like happy, sad, and angry from acoustic features.
 
 ## 📖 Table of Contents
 * [About The Project](#about-the-project)
 * [Dataset](#dataset)
 * [Feature Extraction](#feature-extraction)
-* [Installation](#installation)
-* [Usage](#usage)
 * [Model & Results](#model--results)
 * [Technologies Used](#technologies-used)
-* [Contributing](#contributing)
+* [Installation](#installation)
+* [Usage](#usage)
 * [License](#license)
 * [Contact](#contact)
 
@@ -18,17 +17,11 @@ This project aims to detect and classify emotions from speech audio files using 
 
 ## ℹ️ About The Project
 
-The primary goal of this project is to build a robust classifier for emotion recognition from audio data. This has applications in customer service analysis, mental health monitoring, and interactive AI systems.
+The primary goal of this project is to build a robust classifier for emotion recognition from audio. This has applications in customer service analysis, mental health monitoring, and interactive AI systems. The project involves preprocessing audio, extracting key acoustic features, and training a hybrid CNN-LSTM model for classification.
 
-The project involves:
-1.  Preprocessing audio files.
-2.  Extracting meaningful acoustic features.
-3.  Training a machine learning model to classify emotions.
-4.  Evaluating the model's performance.
+The core analysis is in `Speech_Sentimental_Analysis.ipynb`.
 
 ---
-
-## 📊 Dataset
 
 ## 📊 Dataset
 
@@ -42,12 +35,38 @@ This project uses the **RAVDESS (Ryerson Audio-Visual Database of Emotional Spee
 
 ## 🎵 Feature Extraction
 
-To enable the model to learn from audio, several key acoustic features were extracted from the raw audio signals.
+To enable the model to learn from the audio signals, the following key acoustic features were extracted from each file using the Librosa library:
 
-* **MFCC (Mel-Frequency Cepstral Coefficients)**: Represents the short-term power spectrum of a sound.
-* **Chroma Features**: Captures the harmonic and melodic characteristics of music/speech.
-* **Mel Spectrogram**: A spectrogram where the frequencies are converted to the mel scale.
-*(Add or remove any other features you used, like Zero-Crossing Rate, Spectral Centroid, etc.)*
+* **MFCC (Mel-Frequency Cepstral Coefficients)**: Captures the essential shape of the vocal tract, which is crucial for identifying phonetic characteristics.
+* **Chroma Features**: Represents the 12 distinct pitch classes, which is useful for analyzing the harmonic and melodic content of speech.
+* **Mel Spectrogram**: A visual representation of the spectrum of frequencies as they vary with time, converted to the mel scale to mimic human hearing.
+
+---
+
+## 🤖 Model & Results
+
+A hybrid deep learning model combining a **Convolutional Neural Network (CNN)** and a **Long Short-Term Memory (LSTM)** network was designed to classify the extracted features.
+
+* **Architecture**:
+    1.  A **1D CNN** layer (`Conv1D`) acts as a feature detector, identifying local patterns in the audio features.
+    2.  An **LSTM** layer processes the sequence of features from the CNN, capturing temporal dependencies in the speech signal.
+    3.  A **Dense** output layer with a `softmax` activation function classifies the input into one of the 8 emotional categories.
+* **Performance**: The model was trained for 50 epochs and compiled using the Adam optimizer and categorical cross-entropy loss. It achieved the following performance on the test set:
+
+| Metric         | Score                |
+| :------------- | :------------------- |
+| **Test Accuracy** | **Approximately 76%**|
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python**
+* **TensorFlow & Keras**: For building and training the CNN-LSTM deep learning model.
+* **Librosa**: For audio processing and feature extraction.
+* **Scikit-learn**: For data splitting (`train_test_split`) and encoding labels.
+* **Pandas & NumPy**: For data manipulation and numerical operations.
+* **Matplotlib & Seaborn**: For creating visualizations of the data and results.
 
 ---
 
@@ -64,69 +83,21 @@ To get a local copy up and running, follow these steps.
     cd Sentimental-Analysis-Speech
     ```
 3.  **Install the required libraries:**
-    *(Create a `requirements.txt` file by running `pip freeze > requirements.txt` and then list the command to install it here.)*
     ```sh
-    pip install pandas numpy scikit-learn tensorflow librosa
+    pip install pandas numpy tensorflow scikit-learn librosa matplotlib seaborn jupyterlab
     ```
 
 ---
 
 ## 🚀 Usage
 
-To run the analysis or make predictions, follow these steps.
+To explore the project, you can run the main Jupyter Notebook.
 
-1.  **Explore the analysis** by running the main Jupyter Notebook:
+1.  Start Jupyter Lab:
     ```sh
-    jupyter lab YourNotebookName.ipynb
+    jupyter lab
     ```
-2.  **To predict on a new audio file** (if you have a prediction script):
-    ```sh
-    python predict.py --input "path/to/your/audio.wav"
-    ```
-
----
-
-## 🤖 Model & Results
-
-This section should describe the model architecture and its performance.
-
-*(Please fill in this section with the details from your notebook. Here is a template you can use):*
-
-A **[Your Model, e.g., Convolutional Neural Network (CNN) or LSTM]** was designed to classify the audio features. The model architecture consists of **[briefly describe layers, e.g., Conv1D, MaxPooling, LSTM, and Dense layers]**.
-
-The model achieved an overall accuracy of **[e.g., 85%]** on the test set.
-
-| Metric         | Score      |
-| :------------- | :--------- |
-| Accuracy       | **[e.g., 0.85]** |
-| Precision      | **[e.g., 0.82]** |
-| Recall         | **[e.g., 0.85]** |
-| F1-score (macro) | **[e.g., 0.83]** |
-
-A confusion matrix can also be included here to show performance per emotion.
-
----
-
-## 🛠️ Technologies Used
-
-* **Python**
-* **Librosa**: For audio processing and feature extraction.
-* **TensorFlow/Keras**: For building and training the deep learning model.
-* **Scikit-learn**: For data splitting and model evaluation metrics.
-* **Pandas & NumPy**: For data manipulation.
-* **Matplotlib & Seaborn**: For data visualization.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps to contribute.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/NewFeature`)
-3.  Commit your Changes (`git commit -m 'Add some NewFeature'`)
-4.  Push to the Branch (`git push origin feature/NewFeature`)
-5.  Open a Pull Request
+2.  Open `Speech_Sentimental_Analysis.ipynb` to view the code, analysis, and results.
 
 ---
 
@@ -138,6 +109,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📫 Contact
 
-Laabh Gupta - reachlaabhgupta@gmai.com - https://www.linkedin.com/in/laabhgupta/
+Laabh Gupta - reachlaabhgupta@gmail.com - [https://www.linkedin.com/in/laabhgupta/](https://www.linkedin.com/in/laabhgupta/)
 
 Project Link: [https://github.com/Laabh-Gupta/Sentimental-Analysis-Speech](https://github.com/Laabh-Gupta/Sentimental-Analysis-Speech)

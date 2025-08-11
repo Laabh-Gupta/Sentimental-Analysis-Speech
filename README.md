@@ -30,11 +30,13 @@ The project involves:
 
 ## 📊 Dataset
 
-This section should describe the dataset used to train and test the model.
+## 📊 Dataset
 
-* **Source**: Provide the name and source of the dataset (e.g., RAVDESS, TESS, SAVEE, or a custom dataset).
-* **Description**: Briefly describe the dataset, including the number of speakers, the emotions classified, and the format of the audio files (e.g., `.wav`, `.mp3`).
-* **Emotions**: List the emotions the model is trained to detect (e.g., Neutral, Calm, Happy, Sad, Angry, Fearful, Disgust, Surprised).
+This project uses the **RAVDESS (Ryerson Audio-Visual Database of Emotional Speech and Song)**, a high-quality, validated dataset designed specifically for emotional research.
+
+* **Concept**: The dataset provides a standardized set of voice recordings where actors express specific emotions. By training a model on the acoustic features of these recordings, it can learn to recognize the underlying emotion in other speech samples.
+* **Content**: It features 24 professional actors (12 male, 12 female) vocalizing two lexically-matched statements. The recordings cover 8 distinct emotions: neutral, calm, happy, sad, angry, fearful, disgust, and surprise. Each emotion is produced at both normal and strong intensity levels.
+* **Link**: [https://www.kaggle.com/datasets/uwrfkaggler/ravdess-emotional-speech-audio](https://www.kaggle.com/datasets/uwrfkaggler/ravdess-emotional-speech-audio)
 
 ---
 
